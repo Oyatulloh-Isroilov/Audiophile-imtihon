@@ -4,7 +4,7 @@ import headphonesImg from '../assets/images/headphone.png';
 import speakersImg from '../assets/images/speaker.png';
 import earphonesImg from '../assets/images/earphone.png';
 
-function CategoriesCards({ flexDirection, gap, paddingX, paddingY }) {
+function CategoriesCards({ flexDirection, gap, paddingX, paddingY, onMenuClose }) {
   const categories = [
     {
       title: 'headphones',
@@ -26,7 +26,13 @@ function CategoriesCards({ flexDirection, gap, paddingX, paddingY }) {
   return (
     <div className={`flex ${flexDirection} ${gap} ${paddingX} ${paddingY} bg-offWhite w-full rounded-bl-md rounded-br-md z-30`}>
       {categories.map(category => (
-        <CategoryCard key={category.title} image={category.img} url={category.url} title={category.title}/>
+        <CategoryCard
+          key={category.title}
+          image={category.img}
+          url={category.url}
+          title={category.title}
+          onMenuClose={onMenuClose}
+        />
       ))}
     </div>
   );

@@ -4,6 +4,64 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .animate-slideDown {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .animate-slideUp {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
 #root {
   padding: 0;
   margin: 0;
@@ -14,6 +72,12 @@ body {
   min-height: 100vh;
   background-color: #fafafa;
   position: relative;
+}
+
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
 }
 
 p {
@@ -33,6 +97,7 @@ nav::after {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
+  transition: all 0.3s ease;
 }
 
 main {
@@ -43,6 +108,14 @@ main {
 
 .product-card:nth-of-type(even) .product-card-img {
   grid-area: 1 / 2 / -1 / -1;
+}
+
+.social-icon {
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
 }
 
 .social-icon:hover path {
@@ -59,9 +132,40 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
+input {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #d87d4a;
+  box-shadow: 0 0 0 3px rgba(216, 125, 74, 0.1);
+}
+
 input:not([type='email']):not(:placeholder-shown):not(:focus):invalid {
   outline: none;
-  border: #cd2c2c;
+  border: 2px solid #cd2c2c;
+  box-shadow: 0 0 0 3px rgba(205, 44, 44, 0.1);
+}
+
+button {
+  transition: all 0.2s ease;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+a {
+  transition: all 0.2s ease;
+}
+
+img {
+  transition: transform 0.3s ease;
+}
+
+.shadow-blurred {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (min-width: 768px) {
